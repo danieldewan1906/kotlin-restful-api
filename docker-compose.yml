@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  kotlin-restful-api:
+    container_name: kotlin-restful-api
+    image: kotlin-restful-api:0.0.1
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: kotlin
+      DATABASE_URL: jdbc:mysql://kotlin-restful-api-mysql:3306/restful-api-kotlin
+  kotlin-restful-api-mysql:
+    container_name: "kotlin-restful-api-mysql"
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: kotlin
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: restful-api-kotlin
