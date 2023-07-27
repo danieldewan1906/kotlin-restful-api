@@ -15,15 +15,12 @@ class UserDetailsImpl : UserDetails {
     var userName: String = ""
     @JsonIgnore
     var userPassword: String = ""
-    var roles: String = ""
+    var role: String = ""
 
-    constructor(usernameUser: String, passwordUser: String, role: String) {
-        userName = usernameUser
-        userPassword = passwordUser
-        roles = role
-    }
-
-    constructor(){
+    constructor(userName: String, userPassword: String, role: String) {
+        this.userName = userName
+        this.userPassword = userPassword
+        this.role = role
     }
 
     fun build(user: User): UserDetailsImpl {
@@ -40,8 +37,8 @@ class UserDetailsImpl : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities = mutableListOf<GrantedAuthority>()
-        if (StringUtils.hasText(roles)) {
-            val splits: List<String> = roles.replace(" ", "").split(",")
+        if (StringUtils.hasText(role)) {
+            val splits: List<String> = role.replace(" ", "").split(",")
             for (key in splits) {
                 authorities.add(SimpleGrantedAuthority(key))
             }

@@ -18,10 +18,9 @@ class UserDetailsServiceImpl(
     val userService : UserService
 ) : UserDetailsService {
 
-    private val userDetailsImpl = UserDetailsImpl()
-
     override fun loadUserByUsername(username: String?): UserDetails {
         val user: User = userService.getUserByUser(username!!)
+        val userDetailsImpl = UserDetailsImpl(user.username, user.password, user.role)
         return userDetailsImpl.build(user)
     }
 }

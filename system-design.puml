@@ -1,6 +1,12 @@
 @startuml
 
 actor "User" as user
+
+node "Authentication" {
+    component "Login" as login
+    component "SignUp" as signup
+}
+
 node "Kotlin RESTful API" {
     component "Controller" as controller
     component "Service" as service
@@ -9,7 +15,9 @@ node "Kotlin RESTful API" {
 
 database "MySQL" as database
 
-user <--> controller
+user <--> login
+user <--> signup
+login <--> controller
 controller <--> service
 service <--> repository
 repository <--> database

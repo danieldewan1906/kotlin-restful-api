@@ -20,11 +20,13 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class AuthTokenFilter(
-    val jwtUtils: JwtUtils,
-    val userDetailsServiceImpl: UserDetailsServiceImpl) : OncePerRequestFilter(){
+class AuthTokenFilter() : OncePerRequestFilter() {
 
     private val logger: Logger = LoggerFactory.getLogger(AuthTokenFilter::class.java)
+    @Autowired
+    lateinit var jwtUtils: JwtUtils
+    @Autowired
+    lateinit var userDetailsServiceImpl: UserDetailsServiceImpl
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -33,7 +35,6 @@ class AuthTokenFilter(
     ) {
         try {
             val jwt: String? = parsetJwt(request)
-            val test: String = jwtUtils.getUsernameFromToken(jwt!!)
             if (jwt != null && jwtUtils.validateJwtToken(jwt!!)) {
                 val username: String = jwtUtils.getUsernameFromToken(jwt)
                 val userDetails: UserDetails = userDetailsServiceImpl.loadUserByUsername(username)
@@ -51,7 +52,7 @@ class AuthTokenFilter(
         filterChain.doFilter(request, response)
     }
 
-    public fun parsetJwt(request: HttpServletRequest): String? {
+    fun parsetJwt(request: HttpServletRequest): String? {
         val headerAuth: String = request.getHeader("Authorization")
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             return headerAuth.substring(7, headerAuth.length)
