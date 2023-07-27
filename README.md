@@ -5,7 +5,23 @@
 All API must use this authentication
 Request :
 - Header :
-  - X-Api-Key : "your secret api key"
+  - Authentication : "Bearer (token)"
+- Body :
+```json
+{
+  "username": "string",
+  "password": "string"
+}
+```
+- Response :
+```json
+{
+  "token": "string",
+  "type": "string",
+  "username": "string",
+  "role": "string"
+}
+```
 
 ## Create Product
 Request :

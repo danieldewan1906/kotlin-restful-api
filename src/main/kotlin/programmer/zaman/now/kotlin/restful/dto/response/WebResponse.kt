@@ -1,4 +1,4 @@
-package programmer.zaman.now.kotlin.restful.dto
+package programmer.zaman.now.kotlin.restful.dto.response
 
 data class WebResponse<T> (
     val code: Int,

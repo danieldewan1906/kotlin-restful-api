@@ -1,4 +1,4 @@
-package programmer.zaman.now.kotlin.restful.dto
+package programmer.zaman.now.kotlin.restful.dto.response
 
 import java.util.*
 

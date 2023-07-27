@@ -1,4 +1,4 @@
-package programmer.zaman.now.kotlin.restful.dto
+package programmer.zaman.now.kotlin.restful.dto.request
 
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank

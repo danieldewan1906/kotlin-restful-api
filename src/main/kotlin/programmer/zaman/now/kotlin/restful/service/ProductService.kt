@@ -1,9 +1,9 @@
 package programmer.zaman.now.kotlin.restful.service
 
-import programmer.zaman.now.kotlin.restful.dto.CreateProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.ListProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.ProductResponse
-import programmer.zaman.now.kotlin.restful.dto.UpdateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.ListProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
+import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
 
 interface ProductService {
 

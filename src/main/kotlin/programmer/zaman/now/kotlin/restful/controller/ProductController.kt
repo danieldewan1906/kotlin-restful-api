@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import programmer.zaman.now.kotlin.restful.dto.*
+import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.ListProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
+import programmer.zaman.now.kotlin.restful.dto.response.WebResponse
 import programmer.zaman.now.kotlin.restful.service.ProductService
 
 @RestController

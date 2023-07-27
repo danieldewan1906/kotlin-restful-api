@@ -3,10 +3,10 @@ package programmer.zaman.now.kotlin.restful.service.impl
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import programmer.zaman.now.kotlin.restful.dto.CreateProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.ListProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.ProductResponse
-import programmer.zaman.now.kotlin.restful.dto.UpdateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.ListProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
+import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
 import programmer.zaman.now.kotlin.restful.entity.Product
 import programmer.zaman.now.kotlin.restful.error.NotFoundException
 import programmer.zaman.now.kotlin.restful.repository.ProductRepository
