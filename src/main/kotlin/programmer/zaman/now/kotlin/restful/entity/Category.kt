@@ -1,6 +1,7 @@
 package programmer.zaman.now.kotlin.restful.entity
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader.Strategy
+import java.io.Serializable
 import javax.persistence.*
 
 @Entity
@@ -15,4 +16,4 @@ data class Category (
     @Column(name = "CategoryName", length = 100)
     var name: String
 
-)
+) : Serializable

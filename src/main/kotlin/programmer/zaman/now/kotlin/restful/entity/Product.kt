@@ -1,5 +1,6 @@
 package programmer.zaman.now.kotlin.restful.entity
 
+import java.io.Serializable
 import java.util.Date
 import javax.persistence.*
 
@@ -12,18 +13,22 @@ data class Product (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
 
-    @Column(name = "name")
+    @Column(name = "Name")
     var name: String,
 
-    @Column(name = "price")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CategoryName", referencedColumnName = "CategoryName", nullable = false)
+    var categories: Category,
+
+    @Column(name = "Price")
     var price: Long,
 
-    @Column(name = "quantity")
+    @Column(name = "Quantity")
     var quantity: Int,
 
-    @Column(name = "created_at")
+    @Column(name = "CreatedDate")
     var createdAt: Date,
 
-    @Column(name = "updated_at")
+    @Column(name = "UpdatedDate")
     var updatedAt: Date?
-)
+) : Serializable

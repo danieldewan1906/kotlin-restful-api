@@ -7,10 +7,14 @@ import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
 import programmer.zaman.now.kotlin.restful.dto.request.ListRequestDto
 import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
 import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
+import programmer.zaman.now.kotlin.restful.entity.Category
 import programmer.zaman.now.kotlin.restful.entity.Product
 import programmer.zaman.now.kotlin.restful.error.NotFoundException
+import programmer.zaman.now.kotlin.restful.repository.CategoryRepository
 import programmer.zaman.now.kotlin.restful.repository.ProductRepository
+import programmer.zaman.now.kotlin.restful.service.CategoryService
 import programmer.zaman.now.kotlin.restful.service.ProductService
+import programmer.zaman.now.kotlin.restful.validation.MapperUtils
 import programmer.zaman.now.kotlin.restful.validation.ValidationUtil
 import java.util.*
 import java.util.stream.Collectors
@@ -18,15 +22,18 @@ import java.util.stream.Collectors
 @Service
 class ProductServiceImpl(
     val productRepository: ProductRepository,
+    val categoryService: CategoryService,
     val validationUtil: ValidationUtil
     ) : ProductService {
 
     override fun create(createProductRequestDto: CreateProductRequestDto): ProductResponse {
         validationUtil.validate(createProductRequestDto)
+        val category = getCategory(createProductRequestDto.categoryId)
 
         val product = Product(
             id = null,
             name = createProductRequestDto.name!!,
+            categories = category,
             price = createProductRequestDto.price!!,
             quantity = createProductRequestDto.quantity!!,
             createdAt = Date(),
@@ -44,8 +51,10 @@ class ProductServiceImpl(
     override fun updateProduct(id: Int, updateProductRequestDto: UpdateProductRequestDto): ProductResponse {
         val product = findByIdOrThrowNotFound(id)
         validationUtil.validate(updateProductRequestDto)
+        val category = getCategory(updateProductRequestDto.categoryId)
         product.apply {
             name = updateProductRequestDto.name!!
+            categories = category
             price = updateProductRequestDto.price!!
             quantity = updateProductRequestDto.quantity!!
             updatedAt = Date()
@@ -78,11 +87,18 @@ class ProductServiceImpl(
         return ProductResponse(
             id = product.id!!,
             name = product.name,
+            categoryName = product.categories.name,
             price = product.price,
             quantity = product.quantity,
             createdAt = product.createdAt,
             updatedAt = product.updatedAt
         )
+    }
+
+    private fun getCategory(categoryId: Int?) : Category {
+        val categoryResponse = categoryService.getCategoryById(categoryId!!)
+        val category = MapperUtils().map(categoryResponse, Category::class.java)
+        return category!!
     }
 
 }

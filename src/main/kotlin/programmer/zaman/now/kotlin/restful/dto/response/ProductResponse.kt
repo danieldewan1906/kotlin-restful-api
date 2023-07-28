@@ -5,6 +5,7 @@ import java.util.*
 data class ProductResponse (
     val id: Int,
     val name: String,
+    val categoryName: String,
     val price: Long,
     val quantity: Int,
     val createdAt: Date,

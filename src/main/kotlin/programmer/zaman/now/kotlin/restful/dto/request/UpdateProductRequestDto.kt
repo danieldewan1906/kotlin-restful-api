@@ -10,6 +10,9 @@ data class UpdateProductRequestDto (
     val name: String?,
 
     @field:NotNull
+    val categoryId: Int?,
+
+    @field:NotNull
     @field:Min(value = 1)
     val price: Long?,
 
