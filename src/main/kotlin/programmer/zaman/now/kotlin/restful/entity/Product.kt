@@ -1,17 +1,16 @@
 package programmer.zaman.now.kotlin.restful.entity
 
 import java.util.Date
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "Products")
 data class Product (
 
     @Id
-    val id: String,
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Int?,
 
     @Column(name = "name")
     var name: String,

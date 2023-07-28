@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.request.ListProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.ListRequestDto
 import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
 import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
 import programmer.zaman.now.kotlin.restful.dto.response.WebResponse
@@ -37,7 +37,7 @@ class ProductController(val productService: ProductService) {
     @GetMapping(
         value = ["/products/{id}"]
     )
-    fun getProductById(@PathVariable("id") id: String): WebResponse<ProductResponse> {
+    fun getProductById(@PathVariable("id") id: Int): WebResponse<ProductResponse> {
         val productResponse = productService.getProductById(id)
         return WebResponse(
             code = 200,
@@ -51,7 +51,7 @@ class ProductController(val productService: ProductService) {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun updateProduct(@PathVariable("id") id: String, @RequestBody body: UpdateProductRequestDto): WebResponse<ProductResponse> {
+    fun updateProduct(@PathVariable("id") id: Int, @RequestBody body: UpdateProductRequestDto): WebResponse<ProductResponse> {
         val productResponse = productService.updateProduct(id, body)
         return WebResponse(
             code = 200,
@@ -63,7 +63,7 @@ class ProductController(val productService: ProductService) {
     @DeleteMapping(
         value = ["/products/{id}"]
     )
-    fun deleteProduct(@PathVariable("id") id: String): WebResponse<String> {
+    fun deleteProduct(@PathVariable("id") id: Int): WebResponse<String> {
         val productResponse = productService.deleteProduct(id)
         return WebResponse(
             code = 200,
@@ -78,7 +78,7 @@ class ProductController(val productService: ProductService) {
     )
     fun getListProduct(@RequestParam(value = "pageNo", defaultValue = "0") pageNo: Int,
                        @RequestParam(value = "pageSize", defaultValue = "10") pageSize: Int): WebResponse<List<ProductResponse>> {
-        val request = ListProductRequestDto(pageNo, pageSize)
+        val request = ListRequestDto(pageNo, pageSize)
         val productResponse = productService.getListProduct(request)
         return WebResponse(
             code = 200,

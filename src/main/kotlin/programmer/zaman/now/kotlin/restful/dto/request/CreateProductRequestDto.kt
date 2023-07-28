@@ -7,9 +7,6 @@ import javax.validation.constraints.NotNull
 data class CreateProductRequestDto (
 
     @field:NotBlank
-    val id: String?,
-
-    @field:NotBlank
     val name: String?,
 
     @field:NotNull

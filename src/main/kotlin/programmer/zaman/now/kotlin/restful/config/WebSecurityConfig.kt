@@ -25,7 +25,9 @@ import programmer.zaman.now.kotlin.restful.service.UserService
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig(
-    val unauthorizedHandler: AuthEntryPointJwt
+    val unauthorizedHandler: AuthEntryPointJwt,
+    val jwtUtils: JwtUtils,
+    val userDetailsServiceImpl: UserDetailsServiceImpl
     ) {
 
     @Bean
@@ -38,13 +40,8 @@ class WebSecurityConfig(
             .and()
             .authorizeRequests().antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated()
-        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(AuthTokenFilter(jwtUtils, userDetailsServiceImpl), UsernamePasswordAuthenticationFilter::class.java)
         return http.build()
-    }
-
-    @Bean
-    fun authTokenFilter(): AuthTokenFilter {
-        return AuthTokenFilter()
     }
 
     @Bean

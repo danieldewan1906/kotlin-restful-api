@@ -20,13 +20,12 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class AuthTokenFilter() : OncePerRequestFilter() {
+class AuthTokenFilter(
+    val jwtUtils: JwtUtils,
+    val userDetailsServiceImpl: UserDetailsServiceImpl
+) : OncePerRequestFilter() {
 
     private val logger: Logger = LoggerFactory.getLogger(AuthTokenFilter::class.java)
-    @Autowired
-    lateinit var jwtUtils: JwtUtils
-    @Autowired
-    lateinit var userDetailsServiceImpl: UserDetailsServiceImpl
 
     override fun doFilterInternal(
         request: HttpServletRequest,

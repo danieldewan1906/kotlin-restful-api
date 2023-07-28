@@ -4,7 +4,7 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import programmer.zaman.now.kotlin.restful.dto.request.CreateProductRequestDto
-import programmer.zaman.now.kotlin.restful.dto.request.ListProductRequestDto
+import programmer.zaman.now.kotlin.restful.dto.request.ListRequestDto
 import programmer.zaman.now.kotlin.restful.dto.response.ProductResponse
 import programmer.zaman.now.kotlin.restful.dto.request.UpdateProductRequestDto
 import programmer.zaman.now.kotlin.restful.entity.Product
@@ -25,7 +25,7 @@ class ProductServiceImpl(
         validationUtil.validate(createProductRequestDto)
 
         val product = Product(
-            id = createProductRequestDto.id!!,
+            id = null,
             name = createProductRequestDto.name!!,
             price = createProductRequestDto.price!!,
             quantity = createProductRequestDto.quantity!!,
@@ -36,12 +36,12 @@ class ProductServiceImpl(
         return convertProductToProductResponse(product)
     }
 
-    override fun getProductById(id: String): ProductResponse {
+    override fun getProductById(id: Int): ProductResponse {
         val product = findByIdOrThrowNotFound(id)
         return convertProductToProductResponse(product)
     }
 
-    override fun updateProduct(id: String, updateProductRequestDto: UpdateProductRequestDto): ProductResponse {
+    override fun updateProduct(id: Int, updateProductRequestDto: UpdateProductRequestDto): ProductResponse {
         val product = findByIdOrThrowNotFound(id)
         validationUtil.validate(updateProductRequestDto)
         product.apply {
@@ -54,18 +54,18 @@ class ProductServiceImpl(
         return convertProductToProductResponse(product)
     }
 
-    override fun deleteProduct(id: String) {
+    override fun deleteProduct(id: Int) {
         val product = findByIdOrThrowNotFound(id)
         productRepository.delete(product)
     }
 
-    override fun getListProduct(listProductRequestDto: ListProductRequestDto): List<ProductResponse> {
-        val page = productRepository.findAll(PageRequest.of(listProductRequestDto.pageNo, listProductRequestDto.pageSize))
+    override fun getListProduct(listRequestDto: ListRequestDto): List<ProductResponse> {
+        val page = productRepository.findAll(PageRequest.of(listRequestDto.pageNo, listRequestDto.pageSize))
         var products: List<Product> = page.get().collect(Collectors.toList())
         return products.map { convertProductToProductResponse(it) }
     }
 
-    private fun findByIdOrThrowNotFound(id: String): Product {
+    private fun findByIdOrThrowNotFound(id: Int): Product {
         val product = productRepository.findByIdOrNull(id)
         if (product == null) {
             throw NotFoundException()
@@ -76,7 +76,7 @@ class ProductServiceImpl(
 
     private fun convertProductToProductResponse(product: Product): ProductResponse {
         return ProductResponse(
-            id = product.id,
+            id = product.id!!,
             name = product.name,
             price = product.price,
             quantity = product.quantity,
