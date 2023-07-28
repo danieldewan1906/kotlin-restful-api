@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import programmer.zaman.now.kotlin.restful.dto.request.CreateUserRequestDto
 import programmer.zaman.now.kotlin.restful.dto.request.LoginRequestDto
 import programmer.zaman.now.kotlin.restful.dto.response.LoginResponseDto
+import programmer.zaman.now.kotlin.restful.dto.response.WebResponse
 import programmer.zaman.now.kotlin.restful.entity.User
 import programmer.zaman.now.kotlin.restful.service.AuthenticationService
 import programmer.zaman.now.kotlin.restful.service.UserService
@@ -24,8 +25,13 @@ class AuthController(
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun login(@RequestBody loginRequestDto: LoginRequestDto): LoginResponseDto {
-        return authenticationServicec.signIn(loginRequestDto)
+    fun login(@RequestBody loginRequestDto: LoginRequestDto): WebResponse<LoginResponseDto> {
+        val response = authenticationServicec.signIn(loginRequestDto)
+        return WebResponse(
+            code = 200,
+            status = "OK",
+            data = response
+        )
     }
 
     @PostMapping(
@@ -33,10 +39,12 @@ class AuthController(
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun signup(@RequestBody createUserRequestDto: CreateUserRequestDto): ResponseEntity<CreateUserRequestDto> {
+    fun signup(@RequestBody createUserRequestDto: CreateUserRequestDto): WebResponse<String> {
         authenticationServicec.signUp(createUserRequestDto)
-        return ResponseEntity(
-            HttpStatus.OK
+        return WebResponse(
+            code = 200,
+            status = "OK",
+            data = "Successfully SignUp Your Account"
         )
     }
 }
