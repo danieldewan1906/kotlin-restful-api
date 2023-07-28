@@ -34,6 +34,7 @@ Request :
 ```json
 {
     "name" : "string",
+    "categoryId": "integer",
     "price" : "long", 
     "quantity" : "integer"
 }
@@ -46,6 +47,7 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
+    "categoryName": "string",
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -68,6 +70,7 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
+    "categoryName": "string",
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -87,6 +90,7 @@ Request :
 ```json
 {
     "name" : "string",
+    "categoryId": "integer",
     "price" : "long", 
     "quantity" : "integer"
 }
@@ -99,6 +103,7 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
+    "categoryName": "string",
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -125,6 +130,7 @@ Request :
     {
       "id" : "int, unique",
       "name" : "string",
+      "categoryName": "string",
       "price" : "long",
       "quantity" : "integer",
       "createdAt": "date",
@@ -133,6 +139,7 @@ Request :
     {
       "id" : "int, unique",
       "name" : "string",
+      "categoryName": "string",
       "price" : "long",
       "quantity" : "integer",
       "createdAt": "date",
