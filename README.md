@@ -16,10 +16,14 @@ Request :
 - Response :
 ```json
 {
-  "token": "string",
-  "type": "string",
-  "username": "string",
-  "role": "string"
+  "code": "number",
+  "status": "string",
+  "data": {
+    "token": "string",
+    "type": "string",
+    "username": "string",
+    "role": "string"
+  }
 }
 ```
 
@@ -56,7 +60,7 @@ Request :
 }
 ```
 
-## GET Product
+## Get Product
 Request :
 - Method : GET
 - Endpoint : `/api/products/{id_products}`
@@ -188,7 +192,7 @@ Request :
 }
 ```
 
-## GET Category
+## Get Category
 Request :
 - Method : GET
 - Endpoint : `/api/category/{id_category}`
@@ -262,6 +266,136 @@ Request :
 Request :
 - Method : DELETE
 - Endpoint : `/api/category/{id_category}`
+- Header :
+  - Accept: application/json
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string"
+}
+```
+
+## Create Suppliers
+Request :
+- Method : POST
+- Endpoint : `/api/suppliers`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+```json
+{
+    "supplierName" : "string",
+    "address": "string",
+    "phone": "string",
+    "fax": "string"
+}
+```
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": {
+    "id" : "int, unique",
+    "supplierName" : "string",
+    "address": "string",
+    "phone": "string",
+    "fax": "string"
+  }
+}
+```
+
+## Get Suppliers
+Request :
+- Method : GET
+- Endpoint : `/api/suppliers/{id_suppliers}`
+- Header :
+  - Accept: application/json
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": {
+    "id" : "int, unique",
+    "supplierName" : "string",
+    "address": "string",
+    "phone": "string",
+    "fax": "string"
+  }
+}
+```
+
+## Update Suppliers
+Request :
+- Method : PUT
+- Endpoint : `/api/suppliers/{id_suppliers}`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+```json
+{
+    "supplierName" : "string",
+    "address": "string",
+    "phone": "string",
+    "fax": "string"
+}
+```
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": {
+    "id" : "int, unique",
+    "supplierName" : "string",
+    "address": "string",
+    "phone": "string",
+    "fax": "string"
+  }
+}
+```
+
+## List Suppliers
+Request :
+- Method : GET
+- Endpoint : `/api/suppliers`
+- Header :
+  - Accept: application/json
+- Query Param :
+  - pageSize : number,
+  - pageNo : number
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": [
+    {
+      "id" : "int, unique",
+      "supplierName" : "string",
+      "address": "string",
+      "phone": "string",
+      "fax": "string"
+    },
+    {
+      "id" : "int, unique",
+      "supplierName" : "string",
+      "address": "string",
+      "phone": "string",
+      "fax": "string"
+    }
+  ]
+}
+```
+
+## Delete Suppliers
+Request :
+- Method : DELETE
+- Endpoint : `/api/suppliers/{id_suppliers}`
 - Header :
   - Accept: application/json
 - Response :
