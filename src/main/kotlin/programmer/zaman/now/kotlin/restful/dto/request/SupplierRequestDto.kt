@@ -15,6 +15,6 @@ data class SupplierRequestDto (
     @field:NotBlank
     val phone: String?,
 
-    val fax: Long
+    val fax: String
 
 )

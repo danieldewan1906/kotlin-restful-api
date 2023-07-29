@@ -27,5 +27,5 @@ data class Suppliers (
     var phone: String,
 
     @Column(name = "Fax", nullable = true)
-    var fax: Long?
+    var fax: String?
 ) : Serializable

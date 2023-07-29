@@ -6,6 +6,6 @@ data class SupplierResponseDto (
     val supplierName: String,
     val address: String,
     val phone: String,
-    val fax: Long
+    val fax: String
 
 )
