@@ -38,7 +38,8 @@ Request :
 ```json
 {
     "name" : "string",
-    "categoryId": "integer",
+    "category": "integer",
+    "supplier": "integer",
     "price" : "long", 
     "quantity" : "integer"
 }
@@ -51,7 +52,17 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
-    "categoryName": "string",
+    "category": {
+      "id": "int, id category, unique",
+      "name": "string"
+    },
+    "suppliers": {
+      "id": "int, id suppliers, unique",
+      "supplierName": "string",
+      "address": "string",
+      "phone": "string",
+      "fax": "string"
+    },
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -74,7 +85,17 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
-    "categoryName": "string",
+    "category": {
+      "id": "int, id category, unique",
+      "name": "string"
+    },
+    "suppliers": {
+      "id": "int, id suppliers, unique",
+      "supplierName": "string",
+      "address": "string",
+      "phone": "string",
+      "fax": "string"
+    },
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -94,7 +115,8 @@ Request :
 ```json
 {
     "name" : "string",
-    "categoryId": "integer",
+    "category": "integer",
+    "supplier": "integer",
     "price" : "long", 
     "quantity" : "integer"
 }
@@ -107,7 +129,17 @@ Request :
   "data": {
     "id" : "int, unique",
     "name" : "string",
-    "categoryName": "string",
+    "category": {
+      "id": "int, id category, unique",
+      "name": "string"
+    },
+    "suppliers": {
+      "id": "int, id suppliers, unique",
+      "supplierName": "string",
+      "address": "string",
+      "phone": "string",
+      "fax": "string"
+    },
     "price" : "long",
     "quantity" : "integer",
     "createdAt": "date",
@@ -134,7 +166,17 @@ Request :
     {
       "id" : "int, unique",
       "name" : "string",
-      "categoryName": "string",
+      "category": {
+        "id": "int, id category, unique",
+        "name": "string"
+      },
+      "suppliers": {
+        "id": "int, id suppliers, unique",
+        "supplierName": "string",
+        "address": "string",
+        "phone": "string",
+        "fax": "string"
+      },
       "price" : "long",
       "quantity" : "integer",
       "createdAt": "date",
@@ -143,7 +185,17 @@ Request :
     {
       "id" : "int, unique",
       "name" : "string",
-      "categoryName": "string",
+      "category": {
+        "id": "int, id category, unique",
+        "name": "string"
+      },
+      "suppliers": {
+        "id": "int, id suppliers, unique",
+        "supplierName": "string",
+        "address": "string",
+        "phone": "string",
+        "fax": "string"
+      },
       "price" : "long",
       "quantity" : "integer",
       "createdAt": "date",

@@ -30,6 +30,21 @@ class WebSecurityConfig(
     val userDetailsServiceImpl: UserDetailsServiceImpl
     ) {
 
+    private val URL_WHITELIST = arrayOf(
+        "/swagger-resources",
+        "/swagger-resources/**",
+        "/configuration/ui",
+        "/configuration/security",
+        "/swagger-ui.html",
+        "/webjars/**",
+        "/v2/api-docs/**",
+        "/api/public/**",
+        "/api/public/authenticate",
+        "/actuator/*",
+        "/swagger-ui/**",
+        "/auth/**"
+    )
+
     @Bean
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -38,7 +53,7 @@ class WebSecurityConfig(
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-            .authorizeRequests().antMatchers("/auth/**").permitAll()
+            .authorizeRequests().antMatchers(*URL_WHITELIST).permitAll()
             .anyRequest().authenticated()
         http.addFilterBefore(AuthTokenFilter(jwtUtils, userDetailsServiceImpl), UsernamePasswordAuthenticationFilter::class.java)
         return http.build()

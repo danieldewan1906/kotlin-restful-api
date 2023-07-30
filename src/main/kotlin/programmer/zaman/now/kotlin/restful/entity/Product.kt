@@ -20,6 +20,10 @@ data class Product (
     @JoinColumn(name = "CategoryName", referencedColumnName = "CategoryName", nullable = false)
     var categories: Category,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SupplierName", referencedColumnName = "SupplierName", nullable = false)
+    var suppliers: Suppliers,
+
     @Column(name = "Price")
     var price: Long,
 

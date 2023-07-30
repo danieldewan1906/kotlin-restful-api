@@ -25,7 +25,7 @@ class AuthEntryPointJwt : AuthenticationEntryPoint{
         logger.info("Inside Rest Authentication Entry Point")
         var error: String = "{ \"status\":\"FAILURE\",\"error\":{\"code\":\"401\",\"message\":\"" + authException?.message+ "\"} }"
         response?.status = HttpServletResponse.SC_UNAUTHORIZED
-        response?.contentType = "application.json"
+        response?.contentType = "application/json"
 
         if (authException is BadCredentialsException) {
             response?.outputStream?.println("{ \"Bad credential\": \"" + authException.message + "\" }")
