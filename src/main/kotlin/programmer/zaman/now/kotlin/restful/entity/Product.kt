@@ -13,7 +13,7 @@ data class Product (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
 
-    @Column(name = "Name")
+    @Column(name = "ProductName")
     var name: String,
 
     @ManyToOne(fetch = FetchType.LAZY)

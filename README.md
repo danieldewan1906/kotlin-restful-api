@@ -457,3 +457,100 @@ Request :
   "status": "string"
 }
 ```
+
+## Add to Cart
+Request :
+- Method : POST
+- Endpoint : `/api/cart`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+```json
+{
+    "product" : "integer",
+    "quantity": "integer"
+}
+```
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": {
+    "products": {
+      "id": "integer, unique",
+      "name": "string",
+      "categories": {
+        "id": "integer, unique",
+        "name": "string"
+      },
+      "suppliers": {
+        "id": "integer. unique",
+        "supplierName": "string",
+        "address": "string",
+        "phone": "string",
+        "fax": "string"
+      },
+      "price": "integer",
+      "quantity": "integer",
+      "createdAt": "string date",
+      "updatedAt": "string date"
+    },
+    "users": {
+      "id": "integer, unique",
+      "username": "string",
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "quantity": "integer",
+    "price": "integer",
+    "total": "integer",
+    "timeMade": "string date"
+  }
+}
+```
+
+## Create Order
+Request :
+- Method : POST
+- Endpoint : `/api/orders`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+```json
+{
+    "shipCost" : "integer",
+    "address": "string",
+    "items": [
+      {
+        "product": "integer",
+        "quantity": "integer"
+      }
+    ]
+}
+```
+- Response :
+```json
+{
+  "code": "number",
+  "status": "string",
+  "data": {
+    "orderNumber": "string",
+    "orderDate": "string date",
+    "users": {
+      "id": "integer, unique",
+      "username": "string",
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "address": "string",
+    "totalTransaction": "long",
+    "shipCost": "integer",
+    "totalOrder": "long",
+    "status": "string",
+    "orderTime": "string date"
+  }
+}
+```

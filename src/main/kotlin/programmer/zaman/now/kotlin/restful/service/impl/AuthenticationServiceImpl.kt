@@ -38,9 +38,11 @@ class AuthenticationServiceImpl(
     override fun signUp(createUserRequestDto: CreateUserRequestDto) {
         val user: User = User(
             id = null,
+            firstname = createUserRequestDto.firstname,
+            lastname = createUserRequestDto.lastname,
             username = createUserRequestDto.username,
             password = passwordEncoder.encode(createUserRequestDto.password),
-            role = createUserRequestDto.role
+            role = "Customer"
         )
         userService.createUser(user)
     }

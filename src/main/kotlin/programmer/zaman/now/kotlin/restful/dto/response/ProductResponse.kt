@@ -7,7 +7,7 @@ import java.util.*
 data class ProductResponse (
     val id: Int,
     val name: String,
-    val category: Category,
+    val categories: Category,
     val suppliers: Suppliers,
     val price: Long,
     val quantity: Int,

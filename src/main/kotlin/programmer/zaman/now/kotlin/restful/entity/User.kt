@@ -1,5 +1,7 @@
 package programmer.zaman.now.kotlin.restful.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import java.io.Serializable
 import javax.persistence.*
 
 @Entity
@@ -15,8 +17,16 @@ data class User (
     val username: String,
 
     @Column(name = "Password")
+    @JsonIgnore
     val password: String,
 
+    @Column(name = "Firstname")
+    val firstname: String,
+
+    @Column(name = "Lastname")
+    val lastname: String,
+
     @Column(name = "Role")
+    @JsonIgnore
     val role: String
-)
+) : Serializable

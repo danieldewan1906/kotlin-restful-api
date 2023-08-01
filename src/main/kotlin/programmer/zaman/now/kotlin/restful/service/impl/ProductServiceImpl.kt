@@ -94,7 +94,7 @@ class ProductServiceImpl(
         return ProductResponse(
             id = product.id!!,
             name = product.name,
-            category = product.categories,
+            categories = product.categories,
             suppliers = product.suppliers,
             price = product.price,
             quantity = product.quantity,
